@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+mkdir -p dist
+echo "build src/vote.ls -> dist/vote.js ..."
+./node_modules/.bin/lsc -cbp src/vote.ls > dist/vote.js
+echo "minifying vote.js ..."
+./node_modules/.bin/uglifyjs dist/vote.js > dist/vote.min.js
+echo "update web assets ..."
+mkdir -p web/static/assets/vote.js/
+cp dist/* web/static/assets/vote.js/
+echo "done."
